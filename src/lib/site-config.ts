@@ -2,9 +2,18 @@
  * Sitenin tek doğruluk kaynağı: iletişim, marka ve SEO sabitleri.
  * Metadata, JSON-LD, Header/Footer ve WhatsApp yönlendirmesi buradan beslenir.
  */
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.adatepesogukzincir.com"
-).replace(/\/$/, "");
+function getValidSiteUrl(): string {
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!envUrl) {
+    return "https://www.adatepesogukzincir.com";
+  }
+  if (envUrl.startsWith("http://") || envUrl.startsWith("https://")) {
+    return envUrl.replace(/\/+$/, "");
+  }
+  return `https://${envUrl}`.replace(/\/+$/, "");
+}
+
+export const SITE_URL = getValidSiteUrl();
 
 export const siteConfig = {
   name: "Adatepe Soğuk Zincir",

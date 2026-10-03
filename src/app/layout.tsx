@@ -17,8 +17,16 @@ const inter = Inter({
   display: "swap",
 });
 
+function getMetadataBase(): URL {
+  try {
+    return new URL(siteConfig.url);
+  } catch {
+    return new URL("https://www.adatepesogukzincir.com");
+  }
+}
+
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
+  metadataBase: getMetadataBase(),
   title: {
     default: siteConfig.homeTitle,
     template: siteConfig.titleTemplate,

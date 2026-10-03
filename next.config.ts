@@ -19,8 +19,7 @@ const nextConfig: NextConfig = {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
   async redirects() {
-    // Lovable prototipindeki çapa bağlantılarının yerini alan kalıcı sayfalar.
-    return [{ source: "/cozumler", destination: "/hizmetler", permanent: true }];
+    return [{ source: "/cozumler", destination: "/#cozumler", permanent: true }];
   },
 };
 
